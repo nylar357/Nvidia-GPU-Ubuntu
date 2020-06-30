@@ -1,6 +1,6 @@
 Proper Installation of Nvidia Drivers on Ubuntu 18.04 (tested and confirmed).
 
-
+[!orevuew](img/screen.png)
 Make your driver executable
 
 $ chmod +x driver.run
@@ -37,4 +37,6 @@ answer how your system guides, reboot and done!
 
 $ reboot
 
-abou
+ESO Running With Lutris
+
+[!preview](img//Screenshot from 2020-06-30 00-44-49.png)
