@@ -1,5 +1,7 @@
 Proper Installation of Nvidia Drivers on Ubuntu 18.04 (tested and confirmed).
 
+![preview](imgs/whole.png)
+
 ![prevuew](imgs/screen.png)
 Make your driver executable
 
@@ -39,7 +41,7 @@ $ reboot
 
 ESO Running With Lutris
 
-![preview](imgs/Screenshot from 2020-06-30 00-44-49.png)
+![preview](imgs/fps.png)
 
 
-![preview](imgs/Screenshot from 2020-06-30 11-58-29.png)
+
