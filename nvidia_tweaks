@@ -1,0 +1,201 @@
+Fixing terminal resolution
+
+Transitioning from nouveau may cause your startup terminal to display at a lower resolution.
+
+For GRUB, see GRUB/Tips and tricks#Setting the framebuffer resolution for details.
+
+For rEFInd, add to esp/EFI/refind/refind.conf and /etc/refind.d/refind.conf (latter file is optional but recommended):
+
+use_graphics_for linux
+
+A small caveat is that this will hide the kernel parameters from being shown during boot.
+Using TV-out
+
+See Wikibooks:nVidia/TV-OUT.
+X with a TV (DFP) as the only display
+
+The X server falls back to CRT-0 if no monitor is automatically detected. This can be a problem when using a DVI connected TV as the main display, and X is started while the TV is turned off or otherwise disconnected.
+
+To force NVIDIA to use DFP, store a copy of the EDID somewhere in the filesystem so that X can parse the file instead of reading EDID from the TV/DFP.
+
+To acquire the EDID, start nvidia-settings. It will show some information in tree format, ignore the rest of the settings for now and select the GPU (the corresponding entry should be titled "GPU-0" or similar), click the DFP section (again, DFP-0 or similar), click on the Acquire Edid Button and store it somewhere, for example, /etc/X11/dfp0.edid.
+
+If in the front-end mouse and keyboard are not attached, the EDID can be acquired using only the command line. Run an X server with enough verbosity to print out the EDID block:
+
+$ startx -- -logverbose 6
+
+After the X Server has finished initializing, close it and your log file will probably be in /var/log/Xorg.0.log. Extract the EDID block using nvidia-xconfig:
+
+$ nvidia-xconfig --extract-edids-from-file=/var/log/Xorg.0.log --extract-edids-output-file=/etc/X11/dfp0.bin
+
+Edit xorg.conf by adding to the Device section:
+
+Option "ConnectedMonitor" "DFP"
+Option "CustomEDID" "DFP-0:/etc/X11/dfp0.edid"
+
+The ConnectedMonitor option forces the driver to recognize the DFP as if it were connected. The CustomEDID provides EDID data for the device, meaning that it will start up just as if the TV/DFP was connected during X the process.
+
+This way, one can automatically start a display manager at boot time and still have a working and properly configured X screen by the time the TV gets powered on.
+
+If the above changes did not work, in the xorg.conf under Device section you can try to remove the Option "ConnectedMonitor" "DFP" and add the following lines:
+
+Option "ModeValidation" "NoDFPNativeResolutionCheck"
+Option "ConnectedMonitor" "DFP-0"
+
+The NoDFPNativeResolutionCheck prevents NVIDIA driver from disabling all the modes that do not fit in the native resolution.
+Headless (no monitor) resolution
+
+In headless mode, resolution falls back to 640x480, which is used by VNC or Steam Link. To start in a higher resolution e.g. 1920x1080, specify a Virtual entry under the Screen subsection in xorg.conf:
+
+Section "Screen"
+   [...]
+   SubSection     "Display"
+       Depth       24
+       Virtual     1920 1080
+   EndSubSection
+EndSection
+
+Tip: Using headless mode may be tricky and prone to error. For instance, in headless mode, desktop environments and nvidia-utils do not provide a graphical way to change resolution. To facilitate setting up resolution one can use a DP or an HDMI dummy adapter which simulates the presence of a monitor attached to that port. Then resolution change can be done normally using a remote session such as VNC or Steam Link.
+Check the power source
+
+The NVIDIA X.org driver can also be used to detect the GPU's current source of power. To see the current power source, check the 'GPUPowerSource' read-only parameter (0 - AC, 1 - battery):
+
+$ nvidia-settings -q GPUPowerSource -t
+
+1
+
+Listening to ACPI events
+
+NVIDIA drivers automatically try to connect to the acpid daemon and listen to ACPI events such as battery power, docking, some hotkeys, etc. If connection fails, X.org will output the following warning:
+
+~/.local/share/xorg/Xorg.0.log
+
+NVIDIA(0): ACPI: failed to connect to the ACPI event daemon; the daemon
+NVIDIA(0):     may not be running or the "AcpidSocketPath" X
+NVIDIA(0):     configuration option may not be set correctly.  When the
+NVIDIA(0):     ACPI event daemon is available, the NVIDIA X driver will
+NVIDIA(0):     try to use it to receive ACPI event notifications.  For
+NVIDIA(0):     details, please see the "ConnectToAcpid" and
+NVIDIA(0):     "AcpidSocketPath" X configuration options in Appendix B: X
+NVIDIA(0):     Config Options in the README.
+
+While completely harmless, you may get rid of this message by disabling the ConnectToAcpid option in your /etc/X11/xorg.conf.d/20-nvidia.conf:
+
+Section "Device"
+  ...
+  Driver "nvidia"
+  Option "ConnectToAcpid" "0"
+  ...
+EndSection
+
+If you are on laptop, it might be a good idea to install and enable the acpid daemon instead.
+Displaying GPU temperature in the shell
+
+There are three methods to query the GPU temperature. nvidia-settings requires that you are using X, nvidia-smi or nvclock do not. Also note that nvclock currently does not work with newer NVIDIA cards such as GeForce 200 series cards as well as embedded GPUs such as the Zotac IONITX's 8800GS.
+nvidia-settings
+
+To display the GPU temp in the shell, use nvidia-settings as follows:
+
+$ nvidia-settings -q gpucoretemp
+
+This will output something similar to the following:
+
+Attribute 'GPUCoreTemp' (hostname:0.0): 41.
+'GPUCoreTemp' is an integer attribute.
+'GPUCoreTemp' is a read-only attribute.
+'GPUCoreTemp' can use the following target types: X Screen, GPU.
+
+The GPU temps of this board is 41 C.
+
+In order to get just the temperature for use in utilities such as rrdtool or conky:
+
+$ nvidia-settings -q gpucoretemp -t
+
+41
+
+nvidia-smi
+
+Use nvidia-smi which can read temps directly from the GPU without the need to use X at all, e.g. when running Wayland or on a headless server. To display the GPU temperature in the shell, use nvidia-smi as follows:
+
+$ nvidia-smi
+
+This should output something similar to the following:
+
+$ nvidia-smi
+
+Fri Jan  6 18:53:54 2012       
++------------------------------------------------------+                       
+| NVIDIA-SMI 2.290.10   Driver Version: 290.10         |                       
+|-------------------------------+----------------------+----------------------+
+| Nb.  Name                     | Bus Id        Disp.  | Volatile ECC SB / DB |
+| Fan   Temp   Power Usage /Cap | Memory Usage         | GPU Util. Compute M. |
+|===============================+======================+======================|
+| 0.  GeForce 8500 GT           | 0000:01:00.0  N/A    |       N/A        N/A |
+|  30%   62 C  N/A   N/A /  N/A |  17%   42MB /  255MB |  N/A      Default    |
+|-------------------------------+----------------------+----------------------|
+| Compute processes:                                               GPU Memory |
+|  GPU  PID     Process name                                       Usage      |
+|=============================================================================|
+|  0.           ERROR: Not Supported                                          |
++-----------------------------------------------------------------------------+
+
+Only for temperature:
+
+$ nvidia-smi -q -d TEMPERATURE
+
+
+====NVSMI LOG====
+
+Timestamp                           : Sun Apr 12 08:49:10 2015
+Driver Version                      : 346.59
+
+Attached GPUs                       : 1
+GPU 0000:01:00.0
+    Temperature
+        GPU Current Temp            : 52 C
+        GPU Shutdown Temp           : N/A
+        GPU Slowdown Temp           : N/A
+
+In order to get just the temperature for use in utilities such as rrdtool or conky:
+
+$ nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits
+
+52
+
+Reference: https://www.question-defense.com/2010/03/22/gpu-linux-shell-temp-get-nvidia-gpu-temperatures-via-linux-cli.
+nvclock
+
+Use nvclockAUR which is available from the AUR.
+Note: nvclock cannot access thermal sensors on newer NVIDIA cards such as Geforce 200 series cards.
+
+There can be significant differences between the temperatures reported by nvclock and nvidia-settings/nv-control. According to this post by the author (thunderbird) of nvclock, the nvclock values should be more accurate.
+Overclocking and cooling
+Enabling overclocking
+Warning: Overclocking might permanently damage your hardware. You have been warned.
+
+Overclocking is controlled via Coolbits option in the Device section, which enables various unsupported features:
+
+Option "Coolbits" "value"
+
+Tip: The Coolbits option can be easily controlled with the nvidia-xconfig, which manipulates the Xorg configuration files:
+
+# nvidia-xconfig --cool-bits=value
+
+The Coolbits value is the sum of its component bits in the binary numeral system. The component bits are:
+
+    1 (bit 0) - Enables overclocking of older (pre-Fermi) cores on the Clock Frequencies page in nvidia-settings.
+    2 (bit 1) - When this bit is set, the driver will "attempt to initialize SLI when using GPUs with different amounts of video memory".
+    4 (bit 2) - Enables manual configuration of GPU fan speed on the Thermal Monitor page in nvidia-settings.
+    8 (bit 3) - Enables overclocking on the PowerMizer page in nvidia-settings. Available since version 337.12 for the Fermi architecture and newer.[1]
+    16 (bit 4) - Enables overvoltage using nvidia-settings CLI options. Available since version 346.16 for the Fermi architecture and newer.[2]
+
+To enable multiple features, add the Coolbits values together. For example, to enable overclocking and overvoltage of Fermi cores, set Option "Coolbits" "24".
+
+The documentation of Coolbits can be found in /usr/share/doc/nvidia/html/xconfigoptions.html and here.
+Note: An alternative is to edit and reflash the GPU BIOS either under DOS (preferred), or within a Win32 environment by way of nvflash and NiBiTor 6.0. The advantage of BIOS flashing is that not only can voltage limits be raised, but stability is generally improved over software overclocking methods such as Coolbits. Fermi BIOS modification tutorial
+Setting static 2D/3D clocks
+
+Set the following string in the Device section to enable PowerMizer at its maximum performance level (VSync will not work without this line):
+
+Option "RegistryDwords" "PerfLevelSrc=0x2222"
+
