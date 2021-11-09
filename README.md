@@ -1,3 +1,6 @@
+EDIT: November 2021 Tested & Confirmed on Kubuntu 21.10
+![preview](imgs/kubuntu.png)
+
 Proper Installation of Nvidia Drivers on Ubuntu 18.04 (tested and confirmed).
 
 ![preview](imgs/whole2.png)
