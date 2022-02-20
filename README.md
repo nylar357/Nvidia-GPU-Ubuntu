@@ -3,7 +3,7 @@
 ![preview](imgs/nvidia.png)
 
 
-
+![preview](imgs/nvidia2.png)
 ![preview](imgs/kubuntu.png)
 
 Proper Installation of Nvidia Drivers on Ubuntu 18.04 (tested and confirmed).
