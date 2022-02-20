@@ -1,4 +1,9 @@
-EDIT: November 2021 Tested & Confirmed on Kubuntu 21.10
+### EDIT: Feb 2022 Tested & Confirmed on Kubuntu 21.10  -- Once Installed open nvidia settings and change prime profile to performance -- this will activate the drivers & settings desired to accomplish this.
+
+
+
+
+
 ![preview](imgs/kubuntu.png)
 
 Proper Installation of Nvidia Drivers on Ubuntu 18.04 (tested and confirmed).
