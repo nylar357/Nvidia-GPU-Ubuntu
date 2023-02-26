@@ -1,10 +1,12 @@
 Update : Currently working with 
-    ubuntu 18.04-Current 
-    Kubuntu 18.04-Current 
-    Zorin 
-    PopOS 
-    Garuda
- # ㄩ尸ᗪ闩七🝗ᗪ : 千㠪乃 己0己㇌
+# ubuntu 18.04-Current 
+# Kubuntu 18.04-Current 
+# Zorin 
+# PopOS 
+# Garuda
+ 
+ 
+   # ㄩ尸ᗪ闩七🝗ᗪ : 千㠪乃 己0己㇌
  
 ![preview](imgs/nvidia.png)
 
