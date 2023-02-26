@@ -1,4 +1,14 @@
-### EDIT: Feb 2022 Tested & Confirmed on Kubuntu 21.10  -- Once Installed open nvidia settings and change prime profile to performance -- this will activate the drivers & settings desired to accomplish this.
+Update : Currently working with 
+    ubuntu 18.04-Current 
+    Kubuntu 18.04-Current 
+    Zorin 
+    PopOS 
+    Garuda
+
+████████████████████████████████████████████████████████████████████████████████████████
+█▄─██─▄█▄─▄▄─█▄─▄▄▀██▀▄─██─▄─▄─█▄─▄▄─█▄─▄▄▀█████▄─▄▄─█▄─▄▄─█▄─▄─▀███▀▄▄▀█─▄▄─█▀▄▄▀█▄▄▄░█
+██─██─███─▄▄▄██─██─██─▀─████─████─▄█▀██─██─██████─▄████─▄█▀██─▄─▀████▀▄██─██─██▀▄███▄▄░█
+▀▀▄▄▄▄▀▀▄▄▄▀▀▀▄▄▄▄▀▀▄▄▀▄▄▀▀▄▄▄▀▀▄▄▄▄▄▀▄▄▄▄▀▀▀▀▀▀▄▄▄▀▀▀▄▄▄▄▄▀▄▄▄▄▀▀▀▀▄▄▄▄▀▄▄▄▄▀▄▄▄▄▀▄▄▄▄▀
 
 ![preview](imgs/nvidia.png)
 
