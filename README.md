@@ -14,7 +14,7 @@ Update : Currently working with
 ![preview](imgs/nvidia2.png)
 ![preview](imgs/kubuntu.png)
 
-Proper Installation of Nvidia Drivers on Ubuntu 18.04 (tested and confirmed).  EDIT Working up to 23.04
+Proper Installation of Nvidia Drivers on Ubuntu 18.04 (tested and confirmed).  EDIT Working up to 24.04
 
 ![preview](imgs/whole2.png)
 
@@ -56,6 +56,8 @@ answer how your system guides, reboot and done!
 $ reboot
 
 ESO Running With Lutris
+
+**As of Ubuntu 24 and newer PopOS you no longer have to blacklist.  Also the drviers can be installed in a normal terminal, no need to login terminal only.
 
 ![preview](imgs/fps2.png)
 
