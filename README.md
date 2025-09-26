@@ -1,5 +1,6 @@
 Update : Currently working with 
-# ubuntu 18.04-Current 
+# ubuntu 18.04-Current
+# ubuntu 24
 # Kubuntu 18.04-Current 
 # Zorin 
 # PopOS 
@@ -57,7 +58,7 @@ $ reboot
 
 ESO Running With Lutris
 
-**As of Ubuntu 24 and newer PopOS you no longer have to blacklist.  Also the drviers can be installed in a normal terminal, no need to login terminal only.
+**As of Ubuntu 24 and newer PopOS you no longer have to blacklist.  Also the drviers can be installed in a normal terminal, no need to login terminal only.**
 
 ![preview](imgs/fps2.png)
 
