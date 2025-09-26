@@ -13,7 +13,7 @@ Update : Currently working with
 
 
 ![preview](imgs/nvidia2.png)
-![preview](imgs/kubuntu.png)
+![preview](imgs/popos2.png)
 
 Proper Installation of Nvidia Drivers on Ubuntu 18.04 (tested and confirmed).  EDIT Working up to 24.04
 
