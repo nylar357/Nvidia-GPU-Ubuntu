@@ -6,8 +6,7 @@ Update : Currently working with
 ![preview](imgs/nvidia.png)
 ![preview](imgs/nvidia2.png)
 ![preview](imgs/popos2.png)
-![preview](imgs/whole2.png)
-![prevuew](imgs/screen.png)
+
 
 ## Step 1 First comes first, lets get your drivers ##
 
@@ -31,7 +30,7 @@ https://www.nvidia.com/en-in/drivers/
 
 **As of Ubuntu 24 and newer PopOS you no longer have to blacklist.  Also the drviers can be installed in a normal terminal, no need to login terminal only.**
 
-![preview](imgs/fps2.png)
+
 
 
 
