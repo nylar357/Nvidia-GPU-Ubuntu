@@ -1,7 +1,7 @@
 Update : Currently working with 
  
  
-   # ㄩ尸ᗪ闩七🝗ᗪ : 千㠪乃 己0己㇌
+   # ㄩ尸ᗪ闩七🝗ᗪ : September 2025
  
 ![preview](imgs/nvidia.png)
 ![preview](imgs/nvidia2.png)
