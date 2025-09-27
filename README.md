@@ -1,62 +1,33 @@
 Update : Currently working with 
-# ubuntu 18.04-Current
-# ubuntu 24
-# Kubuntu 18.04-Current 
-# Zorin 
-# PopOS 
-# Garuda
  
  
    # ㄩ尸ᗪ闩七🝗ᗪ : 千㠪乃 己0己㇌
  
 ![preview](imgs/nvidia.png)
-
-
 ![preview](imgs/nvidia2.png)
 ![preview](imgs/popos2.png)
-
-Proper Installation of Nvidia Drivers on Ubuntu 18.04 (tested and confirmed).  EDIT Working up to 24.04
-
 ![preview](imgs/whole2.png)
-
 ![prevuew](imgs/screen.png)
-Make your driver executable
 
-$ chmod +x driver.run
+## Step 1 First comes first, lets get your drivers ##
 
-Install depends (which should be installed by default on 18.04)
+https://www.nvidia.com/en-in/drivers/
 
-$ sudo apt-get install gcc & cmake
+## Step 2 Make your driver executable ##
 
-Blacklist the Nouveau drivers in kernel
+```chmod +x driver.run```
 
-$ sudo bash -c "echo blacklist nouveau > etc/modprobe.d/blacklist-nvidia-nouveau.conf"
+## Step 3 Install depends (which should be installed by default on 18.04) ##
 
-$ sudo bash -c "echo options nouveau modset=0 >> etc/modprobe.d/blacklist-nvidia-nouveau.conf"
+```sudo apt-get install gcc & cmake```
 
-Update Kernel with the Blacklist
+## Step 4 start the installation, continue to install anyway if prompted, at the end you do not want to edit ##
 
-$ sudo update-initramfs -u
+```sudo bash driver.run```
 
-Reboot
+## answer how your system guides, reboot and done! ##
 
-$ sudo Reboot
-
-Terminal only login (perform at login screen)
-
-$ Ctrl+Alt+F3
-
-Login to the terminal only mode, then install Drivers
-
-$ sudo telinit 3
-
-$ sudo bash driver.run
-
-answer how your system guides, reboot and done!
-
-$ reboot
-
-ESO Running With Lutris
+```sudo reboot```
 
 **As of Ubuntu 24 and newer PopOS you no longer have to blacklist.  Also the drviers can be installed in a normal terminal, no need to login terminal only.**
 
