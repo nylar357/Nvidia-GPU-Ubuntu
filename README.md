@@ -1,4 +1,4 @@
-Update : Currently working with 
+Update : Currently working with Ubuntu 24 LTS PopOS 22 & 24
  
  
    # ㄩ尸ᗪ闩七🝗ᗪ : September 2025
