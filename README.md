@@ -1,6 +1,6 @@
 Update : Currently working with Ubuntu 24 LTS PopOS 22 & 24
  
- 
+ # Cut all the antiquated technical BS out of this, its all depreciated anyway thankfully.  They've made this really straight forward.
    # ㄩ尸ᗪ闩七🝗ᗪ : September 2025
  
 ![preview](imgs/nvidia.png)
