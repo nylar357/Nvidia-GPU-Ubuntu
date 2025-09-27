@@ -29,10 +29,10 @@ https://www.nvidia.com/en-in/drivers/
 ```sudo reboot```
 
 **As of Ubuntu 24 and newer PopOS you no longer have to blacklist.  Also the drviers can be installed in a normal terminal, no need to login terminal only.**
-# As you can see Wayland on PopOS at least hasn't carried over all the Nvidia settings quite yet, I know for a fact Ubuntu has but with Ubuntu 24LTS based distros #
-# my performance is utter garbage in Ubuntu whereas PopOS is nice and smooth sitting close to 200fps in POE2 Highest #
+
 ![preview](imgs/2pop.png)
 
-
+As you can see Wayland on PopOS at least hasn't carried over all the Nvidia settings quite yet, I know for a fact Ubuntu has but with Ubuntu 24LTS based distros
+my performance is utter garbage in Ubuntu whereas PopOS is nice and smooth sitting close to 200fps in POE2 Highest.
 
 
