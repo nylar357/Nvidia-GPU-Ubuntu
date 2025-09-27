@@ -29,7 +29,7 @@ https://www.nvidia.com/en-in/drivers/
 ```sudo reboot```
 
 **As of Ubuntu 24 and newer PopOS you no longer have to blacklist.  Also the drviers can be installed in a normal terminal, no need to login terminal only.**
-![preview](imgs/nvidia.png)
+![preview](imgs/2pop.png)
 
 
 
